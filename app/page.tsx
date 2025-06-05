@@ -25,7 +25,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import * as ExcelJS from 'exceljs';
 
 const exportToExcel = async (filteredTableData: any[]) => {
@@ -159,7 +159,6 @@ export default function HomePage() {
   const [animateFeatures, setAnimateFeatures] = useState(false);
   const [hasUserSelected, setHasUserSelected] = useState(false);
   const [isSbgSbuDisabled, setIsSbgSbuDisabled] = useState(false);
-  const router = useRouter();
   const [selectedCapabilities, setSelectedCapabilities] = useState<string[]>([]);
   const [filteredTableData, setFilteredTableData] = useState<any[]>([]);
   const [expanded, setExpanded] = useState<string | false>(false);
@@ -184,9 +183,9 @@ export default function HomePage() {
     setAnimateFeatures(false);
   };
 
-  const handleSbuChange = (event: SelectChangeEvent<string>) => {
-    setSbu(event.target.value);
-  };
+  // const handleSbuChange = (event: SelectChangeEvent<string>) => {
+  //   setSbu(event.target.value);
+  // };
 
   const handleCapabilityChange = (capability: string) => {
     setSelectedCapabilities((prev) =>
@@ -255,10 +254,12 @@ export default function HomePage() {
           gap: '15px',
         }}
       >
-        <img
+        <Image
           src="/header.png"
           alt="Logo"
-          style={{ width: '220px', height: '43px', cursor: 'pointer' }}
+          width={220} // Specify the width explicitly
+          height={43} // Specify the height explicitly
+          style={{ cursor: 'pointer' }}
           onClick={() => window.location.reload()}
         />
         <div style={{ width: '2px', height: '40px', backgroundColor: '#cccccc' }}></div>
@@ -645,14 +646,14 @@ export default function HomePage() {
 
         </div>
 )}
-        <img
+        <Image
         src="/footer.png"
         alt="Footer Image"
+        width={2000} // Specify the width explicitly
+        height={500} // Specify the height explicitly
         style={{
-          width: '150%',
-          height: 'auto', // Adjusted height for responsiveness
           display: 'block',
-          marginTop: '20px', // Added some top margin
+          marginTop: '20px',
         }}
       />
     </main>
