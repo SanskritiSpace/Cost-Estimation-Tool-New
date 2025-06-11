@@ -97,54 +97,54 @@ const exportToExcel = async (filteredTableData: any[]) => {
 
 const getType = (sbg: string, sbu: string, capability: string) => {
   // Mapping rules based on the screenshot you provided
-  if (sbg === 'AERO') {
-    if (sbu === 'AERO') {
+  if (sbg === 'SBG-1') {
+    if (sbu === 'SBU-1') {
       if ([
-        'Software Downloads',
-        'Software Upload',
-        'Invoice Management',
-        'Subscription Management'
+        'Cap7',
+        'Cap8',
+        'Cap9',
+        'Cap10'
       ].includes(capability)) return 'New Development';
       return 'Onboarding';
     }
     return 'Onboarding';
   }
-  if (sbg === 'BA' && sbu === 'BA') {
+  if (sbg === 'SBG-2' && sbu === 'SBU-1') {
     return 'Onboarding';
   }
-  if (sbg === 'IA') {
-    if (sbu === 'IA'){
+  if (sbg === 'SBG-3') {
+    if (sbu === 'SBU-1'){
       if ([
-        'Software Downloads',
-        'Software Upload',
-        'Subscription Management'
+        'Cap7',
+        'Cap8',
+        'Cap10'
       ].includes(capability)) return 'New Development';
       return 'Onboarding';
     }
-    if (sbu === 'HPS') {
+    if (sbu === 'SBU-2') {
       if (capability === 'Subscription Management') return 'New Development';
       return 'Onboarding';
     }
-    if (sbu === 'PPE') {
+    if (sbu === 'SBU-3') {
       if ([
-        'Software Downloads',
-        'Software Upload',
-        'Invoice Management',
-        'Subscription Management'
+        'Cap7',
+        'Cap8',
+        'Cap9',
+        'Cap10'
       ].includes(capability)) return 'New Development';
       return 'Onboarding';
     }
     return 'Onboarding';
   }
-  if (sbg === 'ESS') {
-    if (sbu === 'UOP' || sbu === 'ADM') {
+  if (sbg === 'SBG-4') {
+    if (sbu === 'SBU-1' || sbu === 'SBU-2') {
       if ([
-        'Technical Solutions',
-        'Technical Publications',
-        'Software Downloads',
-        'Software Upload',
-        'Invoice Management',
-        'Subscription Management'
+        'Cap4',
+        'Cap6',
+        'Cap7',
+        'Cap8',
+        'Cap9',
+        'Cap10'
       ].includes(capability)) return 'New Development';
       return 'Onboarding';
     }
@@ -163,12 +163,12 @@ export default function HomePage() {
   const [filteredTableData, setFilteredTableData] = useState<any[]>([]);
   const [expanded, setExpanded] = useState<string | false>(false);
 
-  const sbgOptions = ['AERO', 'BA', 'IA', 'ESS'];
+  const sbgOptions = ['SBG-1', 'SBG-2', 'SBG-3', 'SBG-4'];
   const sbuOptions = {
-    AERO: ['AERO'],
-    BA: ['BA'],
-    IA: ['IA', 'HPS', 'PPE'],
-    ESS: ['UOP', 'ADM'],
+    'SBG-1': ['SBU-1'],
+    'SBG-2': ['SBU-1'],
+    'SBG-3': ['SBU-1', 'SBU-2', 'SBU-3'],
+    'SBG-4': ['SBU-1', 'SBU-2'],
   };
 
   const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
